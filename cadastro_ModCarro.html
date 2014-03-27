@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="estacionamentoApp">
+<head>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<title>Lista de carros</title>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<div class= "topo"></div>
+	
+<div id="header">
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="cadastro_ModCarro.html">Modelos de carros</a></li>
+      <li><a href="cadastro_cliente.html">Clientes fixos</a></li>
+      <li><a href="controle_estacionamento.html">Estacionamento</a></li>
+      <li><a href="relatorio.html">Relatório</a></li>
+    </ul>
+  </div>
+
+<div class="wrapper" ng-controller="estacionamentoController">
+	<section class="form">
+		<h2>Cadastrar modelo de carros</h2>
+		<form action="" method="POST" class="form-horizontal" 
+		 ng-submit="addCarro()">
+			
+			<div class="control-group">
+				<label class="control-label" for="marca">
+					Marca
+				</label>
+				<div class="controls">
+					<input id="marca" ng-model="marca" required />
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="modelo">
+					Modelo
+				</label>
+				<div class="controls">
+					<input id="modelo" ng-model="modelo" required />
+				</div>
+			</div>
+
+
+			<!--APIFile, ainda esta errado, -->
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; 
+
+   
+    for (var i = 0, f; f = files[i]; i++) {
+
+     
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      
+      reader.onload = (function(theFile) {
+        return function(e) {
+          
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+
+
+		
+			<div class="buttons">
+				<input type="submit" class="btn btn-sm btn-primary" 
+				 value="Salvar" />
+			</div>
+		</form>
+	</section>
+
+	<section class="list">
+		<h2>Lista de carros</h2>
+		<table class="table table-bordered table-striped">
+			<tfoot>
+				
+			</tfoot>
+			<tbody>
+				<tr ng-repeat="carro in list">
+					<td>{{carro.marca}}</td>
+					<td>{{carro.modelo}}</td>
+
+					<td>
+						
+						<button class="editBtn btn btn-success" ng-click='editCarro(carro)'>Editar</button>
+		    			<button class="deleteBtn btn btn-danger" ng-click='deleteCarro(carro)'>Excluir</button>
+					
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</div>
+
+
+
+<script src="js/vendor/angular.min.js"></script>
+<script src="js/estacionamentoApp.js"></script>
+<script src="js/controller/EstacionamentoController.js"></script>
+
+</body>
+</html>

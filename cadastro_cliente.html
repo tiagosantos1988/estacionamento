@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="estacionamentoApp">
+<head>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<title>Clientes Fixos</title>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<div class= "topo"></div>
+
+<div id="header">
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="cadastro_ModCarro.html">Modelos de carros</a></li>
+      <li><a href="cadastro_cliente.html">Clientes fixos</a></li>
+      <li><a href="controle_estacionamento.html">Estacionamento</a></li>
+      <li><a href="relatorio.html">Relatório</a></li>
+    </ul>
+  </div>
+
+<div class="wrapper" ng-controller="clienteController">
+	<section class="form">
+		<h2>Cadastrar clientes fixos</h2>
+		<form action="" method="POST" class="form-horizontal" 
+		 ng-submit="addCliente()">
+			
+			<div class="control-group">
+				<label class="control-label" for="nome">
+					Nome
+				</label>
+				<div class="controls">
+					<input id="nome" ng-model="nome" required />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="endereco">
+					Endereço
+				</label>
+				<div class="controls">
+					<input id="endereco" ng-model="endereco" required />
+				</div>
+			</div>
+
+				<div class="control-group">
+				<label class="control-label" for="telefone">
+					Telefone
+				</label>
+				<div class="controls">
+					<input id="telefone" ng-model="telefone" required />
+				</div>
+			</div>
+
+						
+			<div class="control-group">
+				<label class="control-label" for="sexo">
+					Sexo
+				</label>
+				<div class="controls">
+					<input id="sexo" ng-model="sexo" required />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="idade">
+					Idade
+				</label>
+				<div class="controls">
+					<input id="idade" ng-model="idade" required />
+				</div>
+			</div>
+
+					<div class="control-group">
+				<label class="control-label" for="marca">
+					Marca do carro
+				</label>
+				<div class="controls">
+					<input id="marca" ng-model="marca" required />
+				</div>
+			</div>
+
+					<div class="control-group">
+				<label class="control-label" for="modelo">
+					Modelo do carro
+				</label>
+				<div class="controls">
+					<input id="modelo" ng-model="modelo" required />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="placa">
+					Placa do carro
+				</label>
+				<div class="controls">
+					<input id="placa" ng-model="placa" required />
+				</div>
+			</div>
+
+			<div class="buttons">
+				<input type="submit" class="btn btn-sm btn-primary" 
+				 value="Salvar" />
+			</div>
+
+		</form>
+	</section>
+
+	<section class="list">
+		<h2>Lista de Clientes</h2>
+		<table class="table table-bordered table-striped">
+			<tfoot>
+				
+			</tfoot>
+			<tbody>
+				<tr ng-repeat="cliente in list">
+					<td>{{cliente.nome}}</td>
+					<td>{{cliente.endereco}}</td>
+					<td>{{cliente.telefone}}</td>
+					<td>{{cliente.sexo}}</td>
+					<td>{{cliente.idade}}</td>
+					<td>{{cliente.marca}}</td>
+					<td>{{cliente.modelo}}</td>
+					<td>{{cliente.placa}}</td>
+					<td>
+						<button class="editBtn btn btn-success" ng-click='editCliente(cliente)'>Editar</button>
+		    			<button class="deleteBtn btn btn-danger" ng-click='deleteCliente(cliente)'>Excluir</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</div>
+
+<script src="js/vendor/angular.min.js"></script>
+<script src="js/estacionamentoApp.js"></script>
+<script src="js/controller/ClienteController.js"></script>
+
+</body>
+</html>
